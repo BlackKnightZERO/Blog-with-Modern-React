@@ -52,3 +52,17 @@
   color: #f1356d;
   margin-bottom: 8px;
 }
+.btn-dlt-blog{
+  border: 1px solid #f1356d;
+  border-radius: 5px;
+  background: #fafafa;
+  color:#f1356d;
+  font-weight: 600;
+  float: right;
+  margin-top: -60px;
+  width: 22px;
+}
+.btn-dlt-blog:hover{
+  background:#f1356d;
+  color: #fafafa;
+}

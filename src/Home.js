@@ -11,12 +11,17 @@ const Home = () => {
         {id:3, title:'Mental Health', body: 'story of article...', author:'Faysal'},
         {id:4, title:'React is Fun', body: 'story of article...', author:'Arif'},
     ]);
+
+    const handleDelete = (id) => {
+        const newBlogs = blogs.filter( (blog) => blog.id !==id )
+        console.log(newBlogs);
+        setBlogs(newBlogs);
+    }
     
     return ( 
         <div className="home">
-            <BlogList blogs={blogs} title={title} strMsg="list-view" />  
+            <BlogList blogs={blogs} title={title} strMsg="list-view" handleDelete={handleDelete} />  
             {/* passing as propsName={propsValue} */}
-            <BlogList blogs={blogs.filter((blog) => blog.author === 'Arif')} title="Arif's Blogs" strMsg="list-view" />  
         </div>
      );
 }
