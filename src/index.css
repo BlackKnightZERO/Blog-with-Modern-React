@@ -35,6 +35,10 @@
 
 /* blog previews / list */
 
+.blog-list{
+  margin-bottom: 10px;
+}
+
 .blog-preview {
   padding: 10px 16px;
   margin: 20px 0;
