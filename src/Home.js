@@ -4,13 +4,13 @@ const Home = () => {
         console.log('auto invoked due to ()')
     }
 
-    // const handleClick = (e) => {
+    // const handleClick = (e) => { // auto event passed 
         // console.log('Hello - no param passed', e) 
     const handleClick = () => {
         alert(`Hello - no param passed`)
     }
 
-    // const handleClickWithParams = (param, e) => { //called from anonymous funtion
+    // const handleClickWithParams = (param, e) => { //called from anonymous funtion with event
         //  console.log('Hello - ${param}, e)
     const handleClickWithParams = (param) => { //called from anonymous funtion
         alert(`Hello - ${param}`)
