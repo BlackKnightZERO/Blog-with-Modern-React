@@ -1,28 +1,25 @@
+import { useState } from "react";
+
 const Home = () => {
 
-    const handleClickAutoInvoked = () => {
-        console.log('auto invoked due to ()')
-    }
+    // const name = 'Ayon';
+    const [name, setName] =  useState('Ayon');
+    const [age, setAge]   =  useState(18);
 
-    // const handleClick = (e) => { // auto event passed 
-        // console.log('Hello - no param passed', e) 
     const handleClick = () => {
-        alert(`Hello - no param passed`)
-    }
 
-    // const handleClickWithParams = (param, e) => { //called from anonymous funtion with event
-        //  console.log('Hello - ${param}, e)
-    const handleClickWithParams = (param) => { //called from anonymous funtion
-        alert(`Hello - ${param}`)
+        // name = 'Arif Faysal'
+        // console.log(name)    // is being updated but doesn't re-render
+        
+        setName('Arif Faysal'); // re-render
+        setAge(27);             // re-render
     }
     
     return ( 
         <div className="home">
             <h2>Home page</h2>
-            <button onClick={handleClickAutoInvoked()}>click - auto invoked</button>
-            <button onClick={handleClick}>click - invoke now</button>
-            <button onClick={ () => handleClickWithParams('Ayon') }>click - invoke now</button>
-            {/* <button onClick={ (e) => handleClickWithParams('Ayon', e) }>click - invoke now</button> */}
+            <p>{ name }{', '}{ age }{' Y'}</p>
+            <button onClick={ handleClick }>click - invoke now</button>
         </div>
      );
 }
