@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BlogList from "./BlogList";
 
 const Home = () => {
@@ -17,6 +17,16 @@ const Home = () => {
         console.log(newBlogs);
         setBlogs(newBlogs);
     }
+
+    // useEffect(() => {
+    //     console.log('useEffect runs on every re-render')
+    //     console.log(blogs)
+    // }, [])      //dependency array empty - therefore runs 1 time only
+
+    useEffect(() => {
+        console.log('useEffect runs on every re-render')
+        console.log(blogs)
+    }, [blogs])    //dependency array runs in perspective of state
     
     return ( 
         <div className="home">
