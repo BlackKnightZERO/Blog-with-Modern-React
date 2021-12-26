@@ -3,6 +3,7 @@ import './Navbar';
 import Navbar from './Navbar';
 import Home from './Home';
 import Create from './Create';
+import BlogDetails from './BlogDetails';
 
 function App() {
 
@@ -17,6 +18,9 @@ function App() {
             </Route>
             <Route path="/create" exact>
               <Create />
+            </Route>
+            <Route path="/blogs/:id" exact>
+              <BlogDetails />
             </Route>
           </Switch>
         </div>
