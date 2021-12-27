@@ -1,26 +1,29 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Create = () => {
 
-    const [title, setTitle]     = useState('');
-    const [body, setBody]       = useState('');
-    const [author, setAuthor]   = useState('mario');
-    const [error, setError]     = useState(null);
-    const [success, setSuccess] = useState(false);
-    const [isPending, setIsPending] = useState(false);
+    const [title, setTitle]     = useState('')
+    const [body, setBody]       = useState('')
+    const [author, setAuthor]   = useState('mario')
+    const [error, setError]     = useState(null)
+    const [success, setSuccess] = useState(false)
+    const [pending, setPending] = useState(false)
 
-    const clearForm = () => {
-        setTitle('');
-        setBody('');
-        setAuthor('mario');
-        setError(null);
-        setIsPending(false);
-    }
+    const history = useHistory();
+
+    // const clearForm = () => {
+    //     setTitle('')
+    //     setBody('')
+    //     setAuthor('mario')
+    //     setError(null)
+    //     setPending(false)
+    // }
     
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        setIsPending(true);
+        setPending(true)
 
         const blog = {
             title,
@@ -38,17 +41,22 @@ const Create = () => {
         })
         .then((res) => {
             if( !res.ok ) {
-                setSuccess(false);
+                setSuccess(false)
                 throw Error(`${res.url} - ${res.status} ${res.statusText}`)
+            } else {
+                // clearForm()
+                setSuccess(true)
+                setPending(false)
+                setTimeout(() => {
+                    history.push('/')
+                }, 800 )
             }
-            setSuccess(true);
-            // clearForm();
         })
         .catch(err => {
-            setError(err.message);
+            setError(err.message)
         })
 
-        setIsPending(false);
+        setPending(false)
 
     }
 
@@ -82,10 +90,10 @@ const Create = () => {
                     <option value="yoshi">yoshi</option>
                 </select>
                 {
-                    isPending && <button disabled>Adding..</button>
+                    !pending && <button >Create</button>
                 }
                 {
-                    !isPending && <button >Create</button>
+                    pending && <button disabled>Adding..</button>
                 }
 
                 <p>{title} - {body} - {author}</p>
