@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import BlogList from "./BlogList";
-import useFetch from "./useFetch";
+// import useFetch from "./useFetch";
 
 const Home = () => {
 
@@ -9,18 +9,50 @@ const Home = () => {
 
     let url = `http://localhost:8000/blogs`; 
 
-    const { data:blogs, isPending, error } = useFetch(url);
+    // const { data:blogs, isPending, error } = useFetch(url);    
 
     const [success, setSuccess] = useState(false)
     const [deleteError, setDeleteError] = useState(null)
 
+    const [blogs, setBlogs] =  useState(null);
+    const [isPending, setIsPending] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const abortConst = new AbortController();
+
+        fetch(url, { signal: abortConst.signal })   
+            .then(res => {             
+                if( !res.ok ){
+                    throw Error(`${res.url} - ${res.status} ${res.statusText}`);    
+                }
+                return res.json();                          
+            })    
+            .then((data) => {                               
+                setBlogs(data);
+                setIsPending(false);
+                setError(null);
+            })
+            .catch(err => {
+                if( err.name === 'AbortError' ) {           
+                    console.log('fetch aborted');
+                } else {
+                    setError(err.message);
+                    setIsPending(false);
+                }
+            })
+
+            return () => {                                           
+                console.log('clean up function called');           
+                abortConst.abort();                                 
+            }
+    }, [])
+
     const handleDelete = (id) => {
+
         const newBlogs = blogs.filter( (blog) => blog.id !==id )
         console.log(newBlogs);
-        // setData(newBlogs);                         // how to use useFetch to perform a state update ?
-
-        // newBlogs only needs to be rendered on DOM // mo need for refetch
-
+        setBlogs(newBlogs); 
 
         let deleteUrl = `http://localhost:8000/blogs/${id}`;
 
