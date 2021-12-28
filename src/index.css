@@ -196,6 +196,11 @@
   margin: 0 auto;
 }
 
+.not-found h1 {
+  margin-top: 10%;
+  color: #e7a6ba;
+}
+
 .not-found a{
   text-decoration: none;
   color:#f1356d;
