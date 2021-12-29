@@ -46,7 +46,7 @@ const Home = () => {
                 console.log('clean up function called');           
                 abortConst.abort();                                 
             }
-    }, [])
+    }, [url])
 
     const handleDelete = (id) => {
 

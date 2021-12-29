@@ -48,7 +48,7 @@ const Create = () => {
                 setSuccess(true)
                 setPending(false)
                 setTimeout(() => {
-                    history.push('/')
+                    history.push('/home')
                 }, 800 )
             }
         })

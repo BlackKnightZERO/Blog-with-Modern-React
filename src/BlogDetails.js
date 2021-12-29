@@ -30,7 +30,7 @@ const BlogDetails = () => {
                 setSuccess(true)
                 setDeleting(false)
                 setTimeout(() => {
-                    history.push('/')
+                    history.push('/home')
                 }, 800 )
             }
         })
